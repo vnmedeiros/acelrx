@@ -1,0 +1,13 @@
+{
+    "require": {
+        "slim/slim": "^3.8",
+        "monolog/monolog": "^1.23",
+        "slim/php-view": "^2.2",
+        "moip/moip-sdk-php": "^3.1"
+    },
+    "autoload": {
+        "psr-4": { 
+			"": ["app/dao", "app/entity"] 
+        }
+    }
+}
