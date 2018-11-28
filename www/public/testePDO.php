@@ -8,7 +8,7 @@ try{
     //                 'vnmedeiros',
     //                 '9u7a8abe4',
     //                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-    $dbh = new pdo( 'mysql:host=localhost;port=3306;dbname=myDb', 'user', 'test',
+    $dbh = new pdo( 'mysql:host=db;port=3306;dbname=myDb', 'user', 'test',
                     array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     die(json_encode(array('outcome' => true)));
 }
