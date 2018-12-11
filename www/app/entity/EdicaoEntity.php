@@ -4,31 +4,37 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity() 
- * @ORM\Table(name="evento")
+ * @ORM\Table(name="edicao")
  **/
-class EventoEntity extends BaseEntity {
+class EdicaoEntity extends BaseEntity {
 	/** @ORM\Column(type="string", nullable=false) **/
 	protected $nome;
 	/** @ORM\Column(type="string", nullable=false) **/
 	protected $descricao;
 	/** @ORM\Column(type="string", nullable=false) **/
-	protected $img_capa;
+	protected $data_evento;
 
 	/**
-	* @ORM\ManyToOne(targetEntity="InstituicaoEntity", inversedBy="eventos")
+	* @ORM\ManyToOne(targetEntity="EventoEntity", inversedBy="edicoes")
 	**/
-	protected $instituicao;
-	
+	protected $evento;
+
 	/**
-	* @ORM\OneToMany(targetEntity="EdicaoEntity", mappedBy="evento")
+	* @ORM\OneToMany(targetEntity="LoteEntity", mappedBy="edicao")
 	**/
-	protected $edicoes;
+	protected $lotes;
+
+	/**
+	* @ORM\OneToMany(targetEntity="CategoriaEntity", mappedBy="edicao")
+	**/
+	protected $categorias;
 	
-	public function __construct($nome, $descricao, $img_capa) {
+	public function __construct($nome, $descricao, $data_evento) {
 		$this->nome = $nome;
-		$this->img_capa = $img_capa;
+		$this->data_evento = $data_evento;
 		$this->descricao = $descricao;
-		$this->edicoes = new ArrayCollection();
+		$this->lotes = new ArrayCollection();
+		$this->categorias = new ArrayCollection();
 	}
 
 	/**
@@ -66,27 +72,28 @@ class EventoEntity extends BaseEntity {
 	}
 
 	/**
-	 * Get the value of img_capa
+	 * Get the value of data_evento
 	 */ 
-	public function getImg_capa() {
-		return $this->img_capa;
+	public function getData_evento() {
+		return $this->data_evento;
 	}
 
 	/**
-	 * Set the value of img_capa
+	 * Set the value of data_evento
 	 *
 	 * @return  self
 	 */ 
-	public function setImg_capa($img_capa) {
-		$this->img_capa = $img_capa;
+	public function setData_evento($data_evento) {
+		$this->data_evento = $data_evento;
 		return $this;
 	}
 
 	/**
 	 * Get
 	 */ 
-	public function getInstituicao()	{
-		return $this->instituicao;
+	public function getEvento()
+	{
+		return $this->evento;
 	}
 
 	/**
@@ -94,17 +101,19 @@ class EventoEntity extends BaseEntity {
 	 *
 	 * @return  self
 	 */ 
-	public function setInstituicao($instituicao) {
-		$this->instituicao = $instituicao;
+	public function setEvento($evento)
+	{
+		$this->evento = $evento;
+
 		return $this;
 	}
 
 	/**
 	 * Get
 	 */ 
-	public function getEdicoes()
+	public function getCategorias()
 	{
-		return $this->edicoes;
+		return $this->categorias;
 	}
 
 	/**
@@ -112,9 +121,9 @@ class EventoEntity extends BaseEntity {
 	 *
 	 * @return  self
 	 */ 
-	public function setEdicoes($edicoes)
+	public function setCategorias($categorias)
 	{
-		$this->edicoes = $edicoes;
+		$this->categorias = $categorias;
 
 		return $this;
 	}

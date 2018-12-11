@@ -26,7 +26,7 @@ class InstituicaoEntity extends BaseEntity {
 	protected $UF;
 
 	/**
-	* @ORM\OneToMany(targetEntity="EventoEntity", mappedBy="evento")
+	* @ORM\OneToMany(targetEntity="EventoEntity", mappedBy="instituicao")
 	**/
 	protected $eventos;
 
